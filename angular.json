@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "novo"
+  "defaultProject": "novo",
+  "cli": {
+    "analytics": "0f47843b-b627-46af-bcc9-8b4892dee918"
+  }
 }
