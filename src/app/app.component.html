@@ -1,6 +1,17 @@
 
-<app-header></app-header>
-<app-home></app-home>
+<app-header [title] = "title"></app-header>
+
+<app-exercicio-contador
+  [valor]="10"
+  (valorMudou) = "onValorAtualizado($event)"
+
+></app-exercicio-contador>
+
+<app-exercicio-data-biding
+ [palavra] = "pudim"
+ (clicado) = "eventoRecebido($event)"
+ ></app-exercicio-data-biding> 
+
 <app-footer></app-footer>
 
 

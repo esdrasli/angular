@@ -1,0 +1,28 @@
+<h1>Event Biding</h1>
+
+<button (click)="clicou($event)">Clique aqui</button>
+
+<button (click) = "onClick()">
+  Emitir info de click
+</button>
+
+
+<input type="text" [value]="valorDoInput" (keyup)="digitouAlgo($event)">
+
+Valor do Input: {{valorDoInput}}
+<hr>
+
+<input type="text" [value]="initialValue" >
+<h2> Palavra: {{ palavra}}</h2>
+<br>
+
+<button [disabled] = "isDisable">Clique aqui</button>
+
+<br>
+
+<p [attr.aria-label]="isDisable ? 'Botão desabilitado' : accessibilityText">
+  Um texto qualquer
+
+</p>
+
+<img [src]="imageURL">
