@@ -3,14 +3,16 @@
 
 <app-exercicio-contador
   [valor]="10"
-  (valorMudou) = "onValorAtualizado($event)"
+  (valorMudou) = "onValorAtualizado()"
 
 ></app-exercicio-contador>
+
+<app-exercicio-diretivas></app-exercicio-diretivas>
 
 <app-exercicio-data-biding
  [palavra] = "pudim"
  (clicado) = "eventoRecebido($event)"
- ></app-exercicio-data-biding> 
+ ></app-exercicio-data-biding>
 
 <app-footer></app-footer>
 
