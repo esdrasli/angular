@@ -5,14 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { HomeComponent } from './home/home.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { ExercicioDataBidingComponent } from './shared/components/exercicio-data-biding/exercicio-data-biding.component';
-import { ExercicioContadorComponent } from './shared/components/exercicio-contador/exercicio-contador.component';
-import { ExercicioDiretivasComponent } from './shared/components/exercicio-diretivas/exercicio-diretivas.component';
-import { ExercicioNgclassComponent } from './shared/components/exercicio-ngclass/exercicio-ngclass.component';
-import { ExercicioPipesComponent } from './shared/components/exercicio-pipes/exercicio-pipes.component';
 import localePt from '@angular/common/locales/pt';
 import {registerLocaleData} from '@angular/common';
+import { LoginComponent } from './login/login.component';
+import { ExtratoComponent } from './extrato/extrato.component';
+import { NaoEncontradoComponent } from './nao-encontrado/nao-encontrado.component';
+import { SharedModule } from './shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { ContatosComponent } from './contatos/contatos.component';
 
 
 registerLocaleData (localePt, 'pt');
@@ -22,16 +23,17 @@ registerLocaleData (localePt, 'pt');
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    FooterComponent,
-    ExercicioDataBidingComponent,
-    ExercicioContadorComponent,
-    ExercicioDiretivasComponent,
-    ExercicioNgclassComponent,
-    ExercicioPipesComponent
+    LoginComponent,
+    ExtratoComponent,
+    NaoEncontradoComponent,
+    ContatosComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    RouterModule,
+    HttpClientModule
   ],
   providers: [{
     provide:LOCALE_ID,

@@ -9,3 +9,23 @@
     font-size: 2rem;
   }
 }
+.nav-bar-list {
+  background-color: #6a77bb;
+
+  li{
+    display: inline;
+    margin: 14px;
+
+    a{
+      display: inline-block;
+      color: white;
+      padding: 13px, 16px;
+      text-decoration: none;
+    }
+     .ativado {
+        background-color: red;
+      }
+
+    }
+
+}
