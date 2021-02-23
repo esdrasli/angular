@@ -46,5 +46,8 @@ export class ContatosComponent implements OnInit {
     this.erroNoCarregamento = true;
     console.error(error);
   }
+  irParaDetalhes(){
+    
+  }
 }
 
