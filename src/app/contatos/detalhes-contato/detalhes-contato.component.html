@@ -1,1 +1,34 @@
-<p>detalhes-contato works!</p>
+<div class="container text-center p-5">
+
+    <div *ngIf="errorLoading">
+        <h2>Deu erro :(</h2>
+        <button type="button" class="btn btn-secondary" (click)="loadContato()">Tentar novamente</button>
+    </div>
+
+    <div class="spinner-border text-primary" role="status" *ngIf="onSpinners">
+        <span class="sr-only">Loading...</span>
+    </div>
+
+    <div *ngIf="!onSpinners && !errorLoading">
+        <table class="table table-hover">
+            <tr>
+                <th> ID </th>
+                <th> Nome </th>
+                <th> CPF </th>
+                <th> Banco </th>
+                <th> Agencia </th>
+                <th> Conta Corrente </th>
+            </tr>
+<p>{{contato}}</p>
+            <tr>
+                <td> {{ contato.id }} </td>
+                <td> {{ contato.nome }} </td>
+                <td> {{ contato.cpf }} </td>
+                <td> {{ contato.banco }} </td>
+                <td> {{ contato.ag }} </td>
+                <td> {{ contato.cc }} </td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" (click)="goBack()">Voltar</button>
+    </div>
+</div>

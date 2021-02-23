@@ -47,7 +47,7 @@ export class ContatosComponent implements OnInit {
     console.error(error);
   }
   irParaDetalhes(){
-    
+
   }
 }
 

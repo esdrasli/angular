@@ -1,15 +1,83 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
+
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
 
-  constructor() { }
+  email!: string;
+  password!: string;
 
-  ngOnInit(): void {
+  estaCarregando!: boolean;
+  erroNoLogin!: boolean;
+
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    ) { }
+  @ViewChild('emailInput') emailInput!: ElementRef;
+  @ViewChild('passwordInput') passwordInput!: ElementRef;
+
+    onSubmit(form: any){
+      this.erroNoLogin = false;
+      if (!form.valid) {
+        form.controls.email.markAsTouched();
+        form.controls.password.markAsTouched();
+
+        if (form.controls.email.invalid) {
+          this.emailInput.nativeElement.focus();
+          return;
+        }
+
+        if (form.controls.password.invalid) {
+          this.passwordInput.nativeElement.focus();
+          return;
+        }
+
+        return;
+      }
+
+      this.login();
+      console.log('password: ', this.password);	  }
+  
+    login() {
+      this.estaCarregando = true;
+
+      this.loginService.logar(this.email, this.password)
+      .pipe(
+        finalize(() => this.estaCarregando = false)
+      )
+        .subscribe(
+          response => {
+            console.log('Sucesso! Logou!');
+            this.onSuccessLogin();
+          },
+          error => {
+            console.log('Deu ruim! Não logou!');
+            this.onErrorLogin();
+          }
+        );
+    }
+    onSuccessLogin() {
+      this.router.navigate(['home']);
+    }
+  
+    onErrorLogin() {
+      this.erroNoLogin = true;
+    }
+  
+    exibeErro(nomeControle: string, form: NgForm) {
+      if (!form.controls[nomeControle]) {
+        return false;
+      }
+
+      return form.controls[nomeControle].invalid && form.controls[nomeControle].touched;
+    }
   }
-
-}

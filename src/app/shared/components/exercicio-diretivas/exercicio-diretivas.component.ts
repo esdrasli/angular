@@ -1,93 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { MEMES_AGRUPADOS_POR_CATEGORIA } from './exercicio-diretivas.constants';
 
 @Component({
   selector: 'app-exercicio-diretivas',
   templateUrl: './exercicio-diretivas.component.html',
   styleUrls: ['./exercicio-diretivas.component.scss']
 })
-export class ExercicioDiretivasComponent implements OnInit {
+export class ExercicioDiretivasComponent {
 
+  onDisplay = false;
 
-
-  MEMES_AGRUPADOS_POR_CATEGORIA = [{
-    categoria: 'Javascript',
-    memes: [{
-      titulo: 'Lorem ipsum',
-      imagemURL: '/javascript-1.jpg'
-    }]
-  }, {
-    categoria: 'TypeScript',
-    memes: [{
-      titulo: 'Lorem ipsum',
-      imagemURL: '/typescript-1.jpg'
-    }, {
-      titulo: 'Lorem ipsum',
-      imagemURL: '/typescript-2.jpg'
-    }, {
-      titulo: 'Lorem ipsum',
-      imagemURL: '/typescript-3.jpg'
-    }, {
-      titulo: 'Lorem ipsum',
-      imagemURL: '/typescript-4.jpg'
-    }]
-  }, {
-    categoria: 'Angular',
-    memes: [{
-      titulo: 'Lorem ipsum',
-      imagemURL: '/angular-1.jpg'
-    }, {
-      titulo: 'Lorem ipsum',
-      imagemURL: '/angular-2.jpg'
-    }]
-  }, {
-    categoria: 'Java',
-    memes: [{
-      titulo: 'Lorem ipsum',
-      imagemURL: '/java-1.jpg'
-    }, {
-      titulo: 'Lorem ipsum',
-      imagemURL: '/java-2.jpg'
-    }]
-  }, {
-    categoria: 'Banco de Dados',
-    memes: [{
-      titulo: 'Lorem ipsum',
-      imagemURL: '/database-1.jpg'
-    }]
-  }, {
-    categoria: 'HTML',
-    memes: [{
-      titulo: 'Lorem ipsum',
-      imagemURL: '/html-1.png'
-    }]
-  }, {
-    categoria: 'Outros',
-    memes: [{
-      titulo: 'Lorem ipsum',
-      imagemURL: '/outros-1.jpg'
-    }, {
-      titulo: 'Lorem ipsum',
-      imagemURL: '/outros-2.png'
-    }, {
-      titulo: 'Lorem ipsum',
-      imagemURL: '/outros-3.jpg'
-    }, {
-      titulo: 'Lorem ipsum',
-      imagemURL: '/outros-4.jpg'
-    }, {
-      titulo: 'Lorem ipsum',
-      imagemURL: '/outros-5.jpg'
-    }]
-  }];
-
-  constructor() { }
-
-  ngOnInit(): void {
+  exchangeValue() {
+    this.onDisplay = !this.onDisplay; // ele exibe ele mesmo negado
+  }
+  onSum(number1: any, number2: any) {
+    return number1 + number2;
   }
 
-  PREFIXO_IMAGEM_URL = 'https://raw.githubusercontent.com/vitorfgsantos/angular-memes-diretivas/master/images';
-  
+  // ngFor
+  listFruit = [
+    'apple',
+    'orange',
+    'banana',
+    'cherry',
+  ];
 
+  listCar = [{
+    placa: 'JND-5486',
+    color: 'preto',
+    model: 'Fusca',
+  }, {
+    placa: 'AAA-5486',
+    color: 'azul',
+    model: 'Logan',
+  }, {
+    placa: 'FFF-5486',
+    color: 'branco',
+    model: 'Esporte',
+  }, {
+    placa: 'EEE-5486',
+    color: 'amarelo',
+    model: 'Taxi',
+  },];
 
-
+  memes = MEMES_AGRUPADOS_POR_CATEGORIA;
+  PREFIXO_IMAGEM_URL = 'https://raw.githubusercontent.com/vitorfgsantos/curso-angular-diretivas/master/images';
 }

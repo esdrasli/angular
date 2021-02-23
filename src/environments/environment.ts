@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'https://my-json-server.typicode.com/vitorfgsantos/fake-api/transacoes'
+  API_URL: 'https://my-json-server.typicode.com/vitorfgsantos/fake-api',
 };
 
 /*

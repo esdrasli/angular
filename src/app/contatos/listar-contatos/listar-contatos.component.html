@@ -1,0 +1,37 @@
+<div class="container text-center p-5">
+
+    <div *ngIf="errorLoading">
+      <h2>Deu erro :(</h2>
+      <button type="button" class="btn btn-secondary" (click)="loadContatos()">Tentar novamente</button>
+    </div>
+  
+    <div class="spinner-border text-primary" role="status" *ngIf="onSpinners">
+      <span class="sr-only">Loading...</span>
+    </div>
+  
+    <div *ngIf="!onSpinners && !errorLoading">
+    <table class="table table-hover">
+        <tr>
+          <!-- <th> ID </th> -->
+          <th> Nome </th>
+          <th> Ações</th>
+          <!-- <th> CPF </th>
+          <th> Banco </th>
+          <th> Agencia </th>
+          <th> Conta Corrente </th> -->
+        </tr>
+  
+        <tr *ngFor="let contato of contatos">
+          <!-- <td> {{ contatos.id }} </td> -->
+          <td> {{ contato.nome }} </td>
+          <td>
+            <button class="btn btn-primary btn-3" (click)="goToDetails(contato.id)">Ver detalhes</button>
+          </td>
+          <!-- <td> {{ contatos.cpf }} </td>
+          <td> {{ contatos.banco }} </td>
+          <td> {{ contatos.ag }} </td>
+          <td> {{ contatos.cc }} </td> -->
+        </tr>
+      </table>
+    </div>
+  </div>

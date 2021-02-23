@@ -1,27 +1,37 @@
 <div class="container text-center p-5">
-  <div class="spinner-border" role="status" *ngIf="estaCarregando">
+
+  <div *ngIf="errorLoading">
+    <h2>Deu erro :(</h2>
+    <button type="button" class="btn btn-secondary" (click)="loadExtrato()">Tentar novamente</button>
+  </div>
+
+  <div class="spinner-border text-primary" role="status" *ngIf="onSpinners">
     <span class="sr-only">Loading...</span>
   </div>
 
-  <div *ngIf="erroNoCarregamento">
-    <h2>Deu erro</h2>
+  <div *ngIf="!onSpinners && !errorLoading">
+    <p>Página Atual: {{ page }}</p>
+    <button (click)="previousPage()" class="btn btn-primary" *ngIf="page != 1"> Página anterior</button>
+    <button (click)="nextPage()" class="btn btn-primary ml-2" *ngIf="page != 3" [disabled]="page === 4"> Proxíma página</button>
+
+    <table class="table table-hover">
+      <tr>
+        <th> ID </th>
+        <th> Data </th>
+        <th> Descrição </th>
+        <th> Valor </th>
+        <th> Categoria </th>
+      </tr>
+
+      <tr *ngFor="let transaction of transactions">
+        <td> {{ transaction.id }} </td>
+        <td> {{ transaction.data | date }} </td>
+        <td> {{ transaction.descricao }} </td>
+        <td> {{ transaction.valor | currency:'BRL' }} </td>
+        <td> {{ transaction.categoria }} </td>
+      </tr>
+    </table>
+    <button (click)="previousPage()" class="btn btn-primary" *ngIf="page != 1"> Página anterior</button>
+    <button (click)="nextPage()" class="btn btn-primary ml-2" [disabled]="page === 3"> Proxíma página</button>
   </div>
-  <table class="table table-hover" *ngIf="!estaCarregando && ! erroNoCarregamento">
-    <tr>
-      <th> ID </th>
-      <th> Data </th>
-      <th> Descrição </th>
-      <th> Valor </th>
-      <th> Categoria </th>
-    </tr>
-
-    <tr *ngFor="let transacao of transacoes">
-      <td> {{transacao.id}} </td>
-      <td> {{transacao.data | date}} </td>
-      <td> {{transacao.descricao}} </td>
-      <td> {{transacao.valor |currency: "BRL"}} </td>
-      <td> {{transacao.categoria}} </td>
-    </tr>
-
-  </table>
 </div>

@@ -6,16 +6,26 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  pudim = 'Carro';
-  title = 'Seja Bem vindo!!!';
 
-  constructor() {}
+  dinamicTitle = 'Titulo dinamico, passado por propertyBind';
+  palavra = 'Estou no app, component';
+  // contador
+  initialValueCounter = 100;
 
-  eventoRecebido($event: any) {
-    console.log('AppComponent: Evento Recebido', $event);
+  constructor(){
+    setTimeout(() => {
+      this.dinamicTitle = 'Seja bem-vindo! =}'
+    }, 5000);
+    
   }
-  onValorAtualizado(){
-    console.log('AppComponente: EVENTO RECEBIDO!!!')
+  eventReceived($event: any){
+    console.log('AppComponent: EVENTO RECEBIDO!', $event);
   }
-
+  
+  // contador
+  // onUpdateValue(newValue: any){
+  //   this.initialValueCounter = newValue;
+  //   console.log('Recebi o valor atualizado do contador', newValue);
+  //   console.log('initialValue do app.component', this.initialValueCounter);
+  // }
 }

@@ -1,18 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-exercicio-ngclass',
   templateUrl: './exercicio-ngclass.component.html',
   styleUrls: ['./exercicio-ngclass.component.scss']
 })
-export class ExercicioNgclassComponent implements OnInit {
-  deveSerVerde = false
-  constructor() { }
+export class ExercicioNgclassComponent {
 
-  ngOnInit(): void {
-  }
-  tornarVerde(){
-    this.deveSerVerde = true;
-  }
+  mustBeGreen = false;
 
+  turnGreen(){
+    this.mustBeGreen = !this.mustBeGreen;
+  }
 }

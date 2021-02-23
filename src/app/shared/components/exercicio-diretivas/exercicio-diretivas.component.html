@@ -1,15 +1,53 @@
-<h2> Resolução do exercício </h2>
+<button (click)="exchangeValue()"> Trocar valor</button>
+
+<!-- ngIF com else -->
+<div *ngIf='onDisplay; else elseBlock'>
+    Olá, estou na div com o ngIf.
+</div>
+<ng-template #elseBlock>
+    <div>
+        Vou ser exibido quando onDisplay {{ onDisplay }};
+    </div>
+</ng-template>
+<!--  -->
+<!-- ngIf com then ou else -->
+<div *ngIf="onDisplay; then thenBlock else elseBlockThen"></div>
+<ng-template #thenBlock>Content to render when condition is true.</ng-template>
+<ng-template #elseBlockThen>Content to render when condition is false.</ng-template>
+<!--  -->
+
+<div *ngIf='onSum(5,6) > 10'>
+    Exibe baseado na soma.
+</div>
+<hr><br>
+
+<!-- *ngFor -->
+<ul>
+    <li *ngFor='let item of listFruit'> {{ item }} </li>
+</ul>
+<br>
+<ul>
+    <!-- index as i || let i = index -->
+    <li *ngFor='let car of listCar; let i = index; odd as par;'>  
+       {{ par }} - {{ i+1 }} - {{ car.model }} - {{ car.color }} - {{ car.placa }}
+    </li>
+</ul>
+<!--  -->
+
+<h2>Resolução do exercicio</h2>
 
 <ul>
-  <li *ngFor="let memesAgrupados of MEMES_AGRUPADOS_POR_CATEGORIA">
-    <h2> {{ memesAgrupados.categoria }} </h2>
-
-    <div *ngFor="let meme of memesAgrupados.memes; let par = even">
-      <img [src]="PREFIXO_IMAGEM_URL + meme.imagemURL" *ngIf="par; else blocoPar">
-      <ng-template #blocoPar>
-        <h2> PAR </h2>
-      </ng-template>
-    </div>
-
-  </li>
+    <li *ngFor='let memesClusterd of memes'>
+        {{ memesClusterd.categoria }}
+        <div *ngFor="let photos of memesClusterd.memes; even as par; let iPhotos = index">
+            {{ par }}
+            <h1 *ngIf="par">{{ photos.titulo }}</h1>
+            <img *ngIf="par" [src]="PREFIXO_IMAGEM_URL + photos.imagemURL">
+            <h2 *ngIf="!par"> Não é par {{ iPhotos }} </h2>
+        </div>
+    </li>
 </ul>
+<br>
+<br>
+<br>
+<br>

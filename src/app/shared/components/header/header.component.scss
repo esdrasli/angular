@@ -1,35 +1,30 @@
 .header{
-  text-align: center;
-  padding: 0.8rem;
-  background-color: blue;
+    text-align: center;
+    padding: 0;
+    background-color: #3f51b5;
 
-  &__title{
-    color: cornsilk;
-    margin: 0;
-    font-size: 2rem;
-  }
+    &__title {
+        color: #ebedf7;
+        margin: 0;
+        font-size: 2rem;
+    }
 }
 .nav-bar-list {
-  background-color: #6a77bb;
+    background-color: #6a77bb;
 
-  li{
-    display: inline;
-    margin: 14px;
+    li {
+      display: inline;
 
-    a{
-      display: inline-block;
-      color: white;
-      padding: 13px, 16px;
-      text-decoration: none;
-      margin: 14px;
-      font-size: 28px;
+      a {
+        display: inline-block;
+        color: white;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
 
-
-    }
-     .ativado {
+      .ativado {
         background-color: red;
       }
 
     }
-
-}
+  }

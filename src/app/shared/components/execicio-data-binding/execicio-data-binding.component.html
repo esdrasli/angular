@@ -1,0 +1,55 @@
+<h1>Exercicio Contador</h1>
+
+<h2>Valor atual: {{ currentValue }}</h2>
+<input 
+type="number"
+[value]="currentValue"
+(keyup)="currentValueInput($event)"
+><br>
+<button 
+    (click)="increment()"
+>INCREMENTAR
+</button>
+
+<button
+    (click)="decrement()" 
+    style="margin-left: 20px;"
+>DECREMENTAR
+</button>
+
+<br><hr><br>
+
+<!-- EXEMPLOS DE EVENT BINDING -->
+<h1>Execicio data Binding</h1><br>
+
+<button (click)="onclickBotaoEmissor($event)">
+    Emitir informação de clique.
+</button><br>
+
+<button
+(click)="onClick($event)"
+(mouseenter)="passouMouse()"
+>Clica aqui</button><br>
+
+<input type="text"
+[value]="valorDoInput"
+(keyup)="onKeyUp($event)"><br>
+
+Valor do input: {{ valorDoInput }}
+
+<hr>
+
+<!-- EXEMPLOS DE PROPERTY BINDING -->
+
+<p> Palavra: {{ palavra }}</p>
+<p> Cor: {{ color }}</p>
+
+<input type="text" [value]="initialValue"><br>
+
+<button [disabled]="isDisabled">Clique em mim!</button><br>
+
+<p [attr.aria-label]="isDisabled ? 'Botão desabilitado' : accessibilityText">
+    Um texto qualquer...
+</p>
+
+<img [src]="imageURL">

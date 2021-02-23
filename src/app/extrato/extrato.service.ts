@@ -1,14 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Transacao } from './extrato.interfaces';
+import { environment } from 'src/environments/environment';
+
+import { Transaction } from './extrato.interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExtratoService {
 
-  constructor(private http: HttpClient) { }
-  getTransacoes(){
-    return(this.http.get<Transacao[]>('https://my-json-server.typicode.com/vitorfgsantos/fake-api/transacoes'));
+  API_URL = environment.API_URL;
+
+  constructor(
+    private http: HttpClient,
+  ) {
+  }
+  getTransantion(page: number) {
+    return this.http.get<Transaction[]>(`${this.API_URL}/transacoes`, {
+      params: {
+        _page: String(page),
+      }
+    });
   }
 }

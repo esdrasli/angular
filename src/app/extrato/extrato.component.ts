@@ -1,47 +1,60 @@
 import { Component, OnInit } from '@angular/core';
-import { Transacao } from './extrato.interfaces';
+import { finalize, take } from 'rxjs/operators';
+
+import { Transaction } from './extrato.interfaces';
 import { ExtratoService } from './extrato.service';
-import {finalize, take} from 'rxjs/operators'
 
 @Component({
   selector: 'app-extrato',
   templateUrl: './extrato.component.html',
-  styleUrls: ['./extrato.component.scss'],
+  styleUrls: ['./extrato.component.scss']
 })
 export class ExtratoComponent implements OnInit {
 
-  transacoes!: Transacao[];
-
-  estaCarregando!: boolean;
-  erroNoCarregamento!: boolean;
+  transactions: Array<Transaction> | undefined;
+  page:number = 1;
+  onSpinners: boolean | undefined;
+  errorLoading: boolean | undefined;
 
   constructor(
     private extratoService: ExtratoService
-    ) { }
+  ) { 
+    console.log(extratoService);
+  }
 
   ngOnInit() {
-    this.carregarExtrato();
-
+    this.loadExtrato();
   }
-
-  carregarExtrato(){
-    this.estaCarregando = true;
-
-    this.extratoService.getTransacoes()
+  loadExtrato(){
+    // console.log('loading extrato');
+    this.onSpinners = true;
+    this.errorLoading = false;
+    
+    this.extratoService
+    .getTransantion(this.page)
     .pipe(
       take(1),
-      finalize(()=> this.estaCarregando = false)
+      finalize(() => {this.onSpinners = false}),
     )
     .subscribe(
-      Response => this.onSuccess(Response),
-      error=> this.onError(error))
+      response => this.onSuccess(response),
+      error => this.onError(error),
+    );
   }
-
-  onSuccess(Response: Transacao[]) {
-    this.transacoes = Response;
+  onSuccess(response: Transaction[]){
+    this.transactions = response;
   }
-  onError(error: any){
-    this.erroNoCarregamento = true;
-    console.error(error);
+  onError(error: any) {
+      //fazer alguma coisa se der error
+      this.errorLoading = true;
+      console.error(error);
+  }
+  previousPage(){
+    this.page -= 1;
+    this.loadExtrato();
+  }
+  nextPage(){
+    this.page += 1;
+    this.loadExtrato();
   }
 }
